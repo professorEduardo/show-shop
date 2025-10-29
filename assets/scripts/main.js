@@ -17,19 +17,15 @@ addEventListener("DOMContentLoaded", async () => {
     dados.map((data) => {
       main.innerHTML += `
       <div class="card">
-      <div class="image">
-      <img src="" alt="" />
-      </div>
       <div class="content-card">
       <p class="price">${data.price}</p>
       <p class="title">${data.name}</p>
       <p class="description">${data.description}</p>
       
       </div>
-      <button class="buy-card" onclick="addCart(${data.id})">Buy</button>
+      <button class="remove" onclick="removeProduct(${data.id})">X</button>
       </div>
       `;
-      console.log(dados);
     });
   } catch (error) {
     console.error("Erro na requisição:", error.message);

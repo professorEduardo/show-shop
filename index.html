@@ -5,8 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>show shop</title>
     <script src="./assets/scripts/main.js" defer></script>
+    <script src="./assets/scripts/remove.js" defer></script>
+    <script src="./assets/scripts/modal.js" defer></script>
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/modal.css" />
   </head>
   <body>
     <main class="main"></main>
+    <button onclick="showModal()">Adicionar novo Produto</button>
+
+    <div class="back-modal disable" onclick="showModal()"></div>
+    <div class="modal disable">
+      <p class="title-">Novo produto</p>
+      <form>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" />
+        <label for="preco">Preço</label>
+        <input type="text" id="preco" />
+        <label for="descricao">Descrição</label>
+        <input type="text" id="descricao" />
+        <button type="submit">Criar</button>
+      </form>
+    </div>
   </body>
+
+  <script>
+    API_URL = "https://3s5tmk-3000.csb.app/";
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const productName = document.getElementById("nome").value;
+      const productPrice = document.getElementById("preco").value;
+      const productDesc = document.getElementById("descricao").value;
+
+      try {
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: {
+            prodctName: productName,
+            price: productPrice,
+            imageUrl: "teste",
+            description: productDesc,
+          },
+        };
+        const response = await fetch(API_URL, options);
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        const dados = await response.json();
+        // window.location.href = "https://3s5tmk-5500.csb.app/";
+      } catch (error) {
+        console.error("Erro na requisição:", error.message);
+      }
+    });
+  </script>
 </html>

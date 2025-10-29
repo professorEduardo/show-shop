@@ -1,0 +1,24 @@
+.disable {
+  display: none;
+}
+
+.back-modal {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.modal {
+  background-color: aliceblue;
+  border-radius: 8px;
+  z-index: 999;
+  position: fixed;
+  top: 30vw;
+  left: 10vw;
+  width: 400px;
+  height: 400px;
+}

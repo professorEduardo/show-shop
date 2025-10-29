@@ -3,6 +3,7 @@ const app = express();
 
 import cors from "cors";
 
+app.use(express.json());
 app.use(cors());
 
 import { PrismaClient } from "./generated/prisma/client.js";
@@ -19,14 +20,24 @@ app.get("/", async (req, res) => {
   res.json(products);
 });
 
-app.get("/create", async (req, res) => {
-  const user = await prisma.product.create({
+app.post("/", async (req, res) => {
+  const { prodctName, price, imageUrl, description } = req.body;
+
+  const product = await prisma.product.create({
     data: {
-      name: "gato",
-      price: "15.00",
-      description: "gato daora",
+      name: prodctName,
+      price: price,
+      imageUrl: imageUrl,
+      description: description,
     },
   });
 
-  res.redirect("https://3s5tmk-5500.csb.app/");
+  res.json(product);
+});
+
+app.delete("/:id", async (req, res) => {
+  const product = await prisma.product.delete({
+    where: { id: parseInt(req.params.id) },
+  });
+  res.json(200);
 });
