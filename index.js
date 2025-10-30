@@ -10,10 +10,6 @@ import { PrismaClient } from "./generated/prisma/client.js";
 
 const prisma = new PrismaClient();
 
-app.listen(3000, () => {
-  console.log("port 3000");
-});
-
 app.get("/", async (req, res) => {
   const products = await prisma.product.findMany();
   console.log(products);
@@ -31,7 +27,7 @@ app.post("/", async (req, res) => {
       description: description,
     },
   });
-
+  console.log(product);
   res.json(product);
 });
 
@@ -40,4 +36,8 @@ app.delete("/:id", async (req, res) => {
     where: { id: parseInt(req.params.id) },
   });
   res.json(200);
+});
+
+app.listen(3001, () => {
+  console.log("port 3001");
 });

@@ -24,7 +24,7 @@
         <input type="text" id="preco" />
         <label for="descricao">Descrição</label>
         <input type="text" id="descricao" />
-        <button type="submit">Criar</button>
+        <button type="submit" onclick="showModal()">Criar</button>
       </form>
     </div>
   </body>
@@ -39,25 +39,27 @@
       const productPrice = document.getElementById("preco").value;
       const productDesc = document.getElementById("descricao").value;
 
+      const postData = {
+        prodctName: productName,
+        price: productPrice,
+        imageUrl: "teste",
+        description: productDesc,
+      };
+
       try {
         const options = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: {
-            prodctName: productName,
-            price: productPrice,
-            imageUrl: "teste",
-            description: productDesc,
-          },
+          body: JSON.stringify(postData),
         };
         const response = await fetch(API_URL, options);
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
         const dados = await response.json();
-        // window.location.href = "https://3s5tmk-5500.csb.app/";
+        location.reload();
       } catch (error) {
         console.error("Erro na requisição:", error.message);
       }

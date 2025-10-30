@@ -12,7 +12,7 @@ async function removeProduct(id) {
       throw new Error(`Erro: ${response.status}`);
     }
     const dados = await response.json();
-    window.location.href = "https://3s5tmk-5500.csb.app/";
+    location.reload();
   } catch (error) {
     console.error("Erro na requisição:", error.message);
   }
