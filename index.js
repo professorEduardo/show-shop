@@ -10,8 +10,8 @@ import { PrismaClient } from "./generated/prisma/client.js";
 
 const prisma = new PrismaClient();
 
-app.listen(3000, () => {
-  console.log("port 3000");
+app.listen(3001, () => {
+  console.log("port 3001");
 });
 
 app.get("/", async (req, res) => {

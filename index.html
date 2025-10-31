@@ -45,19 +45,19 @@
           headers: {
             "Content-Type": "application/json",
           },
-          body: {
+          body: JSON.stringify({
             prodctName: productName,
             price: productPrice,
             imageUrl: "teste",
             description: productDesc,
-          },
+          }),
         };
         const response = await fetch(API_URL, options);
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
         const dados = await response.json();
-        // window.location.href = "https://3s5tmk-5500.csb.app/";
+        window.location.reload();
       } catch (error) {
         console.error("Erro na requisição:", error.message);
       }
