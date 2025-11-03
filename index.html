@@ -12,7 +12,9 @@
   </head>
   <body>
     <main class="main"></main>
-    <button onclick="showModal()">Adicionar novo Produto</button>
+    <button onclick="showModal()" class="adicionar-novo">
+      Adicionar novo Produto
+    </button>
 
     <div class="back-modal disable" onclick="showModal()"></div>
     <div class="modal disable">
@@ -20,10 +22,13 @@
       <form>
         <label for="nome">Nome</label>
         <input type="text" id="nome" />
+        <br />
         <label for="preco">Preço</label>
         <input type="text" id="preco" />
+        <br />
         <label for="descricao">Descrição</label>
         <input type="text" id="descricao" />
+        <br />
         <button type="submit" onclick="showModal()">Criar</button>
       </form>
     </div>

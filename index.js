@@ -22,14 +22,17 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   const { prodctName, price, imageUrl, description } = req.body;
-
+  console.log(
+    "--------------------------------------------------------------------------------------------"
+  );
+  console.log(prodctName, price, imageUrl, description);
   const product = await prisma.product.create({
-    data: JSON.stringify({
+    data: {
       name: prodctName,
       price: price,
       imageUrl: imageUrl,
       description: description,
-    }),
+    },
   });
 
   res.json(product);
